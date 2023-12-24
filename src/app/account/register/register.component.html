@@ -1,1 +1,16 @@
-<p>register works!</p>
+<div class="d-flex justify-content-center mt-5">
+    <div class="col-3 form-container">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="text-center mb-4">
+                <h1 class="mb-3">Login</h1>
+            </div>
+            <app-text-input [formControl]="registerForm.controls['name']" [label]="'Display Name'"></app-text-input>
+            <app-text-input [formControl]="registerForm.controls['email']" [label]="'Email Address'"></app-text-input>
+            <app-text-input [formControl]="registerForm.controls['password']" [type]="'password'" [label]="'Password'"></app-text-input>
+            <div class="d-grid mb-3">
+              <button mat-raised-button color="primary" [disabled]="registerForm.invalid" type="submit">Sign up</button>
+            </div>
+            <span>Already have an account? <a routerLink="/account/login">Sign In</a></span>
+        </form>
+    </div>
+</div>

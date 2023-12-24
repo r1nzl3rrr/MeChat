@@ -1,0 +1,12 @@
+<div class="mb-3">
+    <mat-form-field>
+        <mat-label>{{label}}</mat-label>
+        <input matInput
+        type={{type}}
+        [formControl]="control">
+        <mat-error *ngIf="control.errors?.['required']">Please enter your {{label}}</mat-error>
+        <mat-error *ngIf="control.errors?.['email']">Invalid email address</mat-error>
+        <mat-error *ngIf="control.errors?.['pattern']">Password not complex enough</mat-error>
+        <mat-error *ngIf="control.errors?.['emailExists']">Email address is taken</mat-error>
+    </mat-form-field>
+</div>
