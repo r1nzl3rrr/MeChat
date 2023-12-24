@@ -2,11 +2,13 @@
     <div class="col-3 form-container">
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="text-center mb-4">
-                <h1 class="mb-3">Login</h1>
+                <h1 class="mb-3">Sign Up</h1>
             </div>
             <app-text-input [formControl]="registerForm.controls['name']" [label]="'Display Name'"></app-text-input>
             <app-text-input [formControl]="registerForm.controls['email']" [label]="'Email Address'"></app-text-input>
             <app-text-input [formControl]="registerForm.controls['password']" [type]="'password'" [label]="'Password'"></app-text-input>
+            <app-text-input [formControl]="registerForm.controls['confirmPassword']" [type]="'password'" [label]="'Confirm Password'"></app-text-input>
+            <mat-error *ngIf="registerForm.errors?.['passwordNotMatch']">Password do not match</mat-error>
             <div class="d-grid mb-3">
               <button mat-raised-button color="primary" [disabled]="registerForm.invalid" type="submit">Sign up</button>
             </div>
