@@ -19,6 +19,8 @@ export class HomeComponent {
     map(([users, user, searchString]) => users.filter(u => u.displayName?.toLowerCase().includes((searchString ?? '').toLowerCase()) && u.uid !== user?.uid ))
   )
 
+  myChats$ = this.chatService.myChats$;
+
   constructor(private usersService: UsersService, private chatService: ChatService) {}
 
   createChat(otherUser: ProfileUser){

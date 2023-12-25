@@ -15,6 +15,25 @@
                     </mat-option>
                 </mat-autocomplete>
             </div>
+
+            <mat-selection-list [multiple]="false" hideSingleSelectionIndicator>
+                <mat-divider></mat-divider>
+                <mat-list-option *ngFor="let chat of myChats$ | async" [value]="chat.id">
+                    <img matListItemAvatar [src]="chat.chatPic ? chat.chatPic : '../assets/images/user-placeholder.jpg'">
+                    <p mat-line class="chat-title">
+                        <span class="chat-name">
+                            {{ chat.chatName }}
+                        </span>
+                        <span class="chat-date">
+                            {{ chat.lastMessageDate }}
+                        </span>
+                    </p>
+                    <p mat-line class="last-message">
+                        {{ chat.lastMessage }}
+                    </p>
+                    <mat-divider [inset]="true"></mat-divider>
+                </mat-list-option>
+            </mat-selection-list>
         </div>
         <div class="messages mat-elevation-z5 col-8 mt-5"></div>
     </div>

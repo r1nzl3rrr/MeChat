@@ -1,6 +1,6 @@
 .chat-list{
     height: 90%;
-    background: #d7cede;
+    background: #c7bee8;
     border-radius: 16px;
     margin-right: 3%;
 }
@@ -17,4 +17,23 @@
 
 .search-input {
     margin: 24px;
+}
+
+.chat-title{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0px;
+}
+
+.chat-name {
+    font-weight: 600; 
+}
+
+.chat-date {
+    font-size: 0.7rem;
+    color: rgba(0,0,0,0.7);
+}
+
+.last-message{
+    margin-bottom: 0px;
 }

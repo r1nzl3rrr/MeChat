@@ -14,3 +14,13 @@ mat-form-field{
 mat-form-field .mdc-text-field--filled:not(.mdc-text-field--disabled) {
     background-color: transparent;
 }
+
+mat-list-option{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.mat-mdc-list-item.mdc-list-item--with-leading-avatar.mdc-list-item--with-one-line, .mat-mdc-list-item.mdc-list-item--with-leading-checkbox.mdc-list-item--with-one-line, .mat-mdc-list-item.mdc-list-item--with-leading-icon.mdc-list-item--with-one-line {
+    height: 80px;
+}
+
