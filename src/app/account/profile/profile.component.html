@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center mt-5">
-    <div class="col-3 p-5 form-container mat-elevation-z5 text-center" *ngIf="user$ | async as user">
+    <div class="col-4 p-5 form-container mat-elevation-z5 text-center" *ngIf="user$ | async as user">
         <h1>User Profile</h1>
         <div class="profile-image">
             <img 
@@ -12,5 +12,23 @@
             </button>
         </div>
         <input #inputField type="file" hidden (change)="uploadImage($event, user)">
+
+        <form class="mt-5" [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+            <div class="row">
+                <app-text-input class="col-6" [formControl]="profileForm.controls['firstName']" [label]="'First Name'"></app-text-input>
+                <app-text-input class="col-6" [formControl]="profileForm.controls['lastName']" [label]="'Last Name'"></app-text-input>
+            </div>
+        
+            <div class="row">
+                <app-text-input class="col-6" [formControl]="profileForm.controls['displayName']" [label]="'Display Name'"></app-text-input>
+                <app-text-input class="col-6" [formControl]="profileForm.controls['phone']" [type]="'number'" [label]="'Phone Number'"></app-text-input>
+            </div>
+
+            <app-text-input [formControl]="profileForm.controls['address']" [label]="'Address'"></app-text-input>
+        
+            <div class="d-grid mb-3">
+                <button mat-raised-button color="primary" type="submit">Save</button>
+            </div>
+        </form>
     </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from 'src/app/account/account.service';
+import { UsersService } from 'src/app/account/users.service';
 
 @Component({
   selector: 'app-tool-bar',
@@ -8,9 +9,13 @@ import { AccountService } from 'src/app/account/account.service';
   styleUrls: ['./tool-bar.component.scss']
 })
 export class ToolBarComponent {
-  constructor(public accountService: AccountService, private router: Router) {
-
-  }
+  user$ = this.usersService.currentUserProfile$;
+  
+  constructor(
+    private accountService: AccountService, 
+    private router: Router,
+    private usersService: UsersService
+  ) {}
 
   logout(){
     this.accountService.logout().subscribe({

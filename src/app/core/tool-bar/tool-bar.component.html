@@ -1,6 +1,6 @@
 <mat-toolbar color="primary" class="d-flex justify-content-between px-5">
     <span routerLink="/" style="cursor: pointer;"><i class="fa fa-comments"></i> MeChat</span>
-    <ng-container *ngIf="accountService.currentUser$ | async as user; else loginButton">
+    <ng-container *ngIf="user$ | async as user; else loginButton">
         <button mat-button [matMenuTriggerFor]="userMenu">
             <img style="border-radius: 100%; margin-right: 10px;" width="30" height="30" 
                 [src]="user.photoURL ?? '../../assets/images/user-placeholder.jpg'">
