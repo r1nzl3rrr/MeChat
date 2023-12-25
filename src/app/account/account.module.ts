@@ -18,6 +18,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     AccountRoutingModule,
     SharedModule,
     MatFormFieldModule
-  ]
+  ],
+  providers:[]
 })
 export class AccountModule { }

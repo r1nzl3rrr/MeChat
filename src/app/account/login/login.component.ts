@@ -10,6 +10,7 @@ import { HotToastService } from '@ngneat/hot-toast';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+
   constructor(private accountService: AccountService, 
               private router: Router,
               private toast: HotToastService){}
@@ -37,11 +38,15 @@ export class LoginComponent {
       this.toast.observe({
         success: 'Logged in successfully',
         loading: 'Logging in...',
-        error: 'There was an error'
+        error: 'Wrong Email or Password'
       })
     ).subscribe({
       next: () => this.router.navigateByUrl(''),
-      error: error => console.log(error)  
+      error: error => {
+        console.log(error);
+        this.email?.setErrors({ invalidCredentials: true });
+        this.password?.setErrors({ invalidCredentials: true });
+      }  
     });
   }
 }

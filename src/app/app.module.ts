@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { environment } from 'src/environments/environment.development';
 import { provideAuth, getAuth } from '@angular/fire/auth';
-import { HotToastModule } from '@ngneat/hot-toast';
+import { provideHotToastConfig } from '@ngneat/hot-toast';
 
 @NgModule({
   declarations: [
@@ -23,9 +23,8 @@ import { HotToastModule } from '@ngneat/hot-toast';
     CoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    HotToastModule.forRoot()
   ],
-  providers: [],
+  providers: [provideHotToastConfig()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

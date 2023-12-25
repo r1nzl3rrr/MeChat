@@ -48,15 +48,18 @@ export class RegisterComponent implements OnInit{
 
     const { name, email, password } = this.registerForm.value;
     if(name && email && password) {
-        this.accountService.register(name, email, password).pipe(
+      this.accountService.register(name, email, password).pipe(
         this.toast.observe({
           success: 'Sign up successfully',
           loading: 'Signing up',
-          error: ({ message }) => `${message}`
+          error: 'Email already taken'
         })
       ).subscribe({
         next: () => this.router.navigateByUrl(''),
-        error: error => console.log(error)
+        error: error => {
+          console.log(error);
+          this.email?.setErrors({ emailExists: true });
+        }
       })
     }
   }
