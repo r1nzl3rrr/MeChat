@@ -10,6 +10,8 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { environment } from 'src/environments/environment.development';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideHotToastConfig } from '@ngneat/hot-toast';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { provideHotToastConfig } from '@ngneat/hot-toast';
     CoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
+    provideStorage(() => getStorage()),
+    provideFirestore(() => getFirestore())
   ],
   providers: [provideHotToastConfig()],
   bootstrap: [AppComponent]

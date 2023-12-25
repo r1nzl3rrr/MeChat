@@ -3,11 +3,14 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { redirectLoggedInTo, canActivate } from '@angular/fire/auth-guard';
+import { redirectLoggedInTo, canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { ProfileComponent } from './profile/profile.component';
 
-const redirectToHome = () => redirectLoggedInTo([''])
+const redirectToHome = () => redirectLoggedInTo(['']);
+const redirectToLogin = () => redirectUnauthorizedTo(['/account/login']);
 
 const routes: Routes = [
+  {path: 'profile', component: ProfileComponent, ...canActivate(redirectToLogin)},
   {path: 'login', component: LoginComponent, ...canActivate(redirectToHome)},
   {path: 'register', component: RegisterComponent, ...canActivate(redirectToHome)}
 ]

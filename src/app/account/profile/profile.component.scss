@@ -1,0 +1,22 @@
+.form-container{
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+
+.profile-image {
+    position: relative;
+}
+
+.profile-image button{
+    position: absolute;
+    bottom: 7px;
+    right: 28%;
+    background-color: #673ab7;
+    color: white
+}
+
+.profile-image img{
+    border-radius: 100%;
+    object-fit: cover;
+    object-position: center;
+}
