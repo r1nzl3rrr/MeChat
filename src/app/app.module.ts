@@ -12,10 +12,11 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideHotToastConfig } from '@ngneat/hot-toast';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,6 +24,7 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
     BrowserAnimationsModule,
     CommonModule,
     CoreModule,
+    HomeModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideStorage(() => getStorage()),

@@ -8,4 +8,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 mat-form-field{
     width: 100%;
+    
+}
+
+mat-form-field .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent;
 }

@@ -1,1 +1,21 @@
-<p>home works!</p>
+<div class="container-fluid" style="height: calc(100vh - 70px); width: 95%;">
+    <div class="row d-flex justify-content-center">
+        <div class="chat-list mat-elevation-z5 col-3 mt-5">
+            <div class="search-input">
+                <mat-form-field>
+                    <input
+                        matInput
+                        placeholder="Search for users..."
+                        [formControl]="searchControl"
+                        [matAutocomplete]="users">
+                </mat-form-field>
+                <mat-autocomplete #users="matAutocomplete">
+                    <mat-option *ngFor="let user of users$ | async" (click)="createChat(user)">
+                        {{user.displayName}}
+                    </mat-option>
+                </mat-autocomplete>
+            </div>
+        </div>
+        <div class="messages mat-elevation-z5 col-8 mt-5"></div>
+    </div>
+</div>
