@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard'
 
-const redirectToLogin = () => redirectUnauthorizedTo(['login']);
+const redirectToLogin = () => redirectUnauthorizedTo(['/account/login']);
 
 const routes: Routes = [
   {path: '', component: HomeComponent, ...canActivate(redirectToLogin)},
