@@ -25,7 +25,7 @@
                             {{ chat.chatName }}
                         </span>
                         <span class="chat-date">
-                            {{ chat.lastMessageDate }}
+                            {{ chat.lastMessageDate | dateDisplay}}
                         </span>
                     </p>
                     <p mat-line class="last-message">
@@ -41,11 +41,23 @@
                     <img [src]="selectedChat.chatPic ? selectedChat.chatPic : 'assets/images/user-placeholder.jpg'">
                     <h2>{{selectedChat.chatName}}</h2>
                 </div>
-                <mat-divider></mat-divider>
+            </ng-container>
+            <mat-divider></mat-divider>
                 <div class="chat-area">
-                    <div *ngFor="let message of messages$ | async">
-                        {{message.text}}
-                    </div>
+                    <ng-container *ngIf="user$ | async as currentUser">
+                        <div 
+                        *ngFor="let message of messages$ | async" 
+                        class="chat-bubble-container"
+                        [ngClass]="{ 'sender': message.senderId === currentUser.uid }">
+                            <div class="chat-bubble">
+                                {{message.text}}
+                                <span class="chat-date">
+                                    {{ message.sentDate | dateDisplay}}
+                                </span>
+                            </div>
+                        </div>
+                        <div #endOfChat></div>
+                    </ng-container>
                 </div>
                 <div class="input-area">
                     <mat-form-field appearance="outline">
@@ -55,7 +67,6 @@
                         </button>
                     </mat-form-field>
                 </div>
-            </ng-container>
             <ng-template #noUser>
                 <div class="no-user-selected">
                     <h1>Please select a user to start chatting</h1>

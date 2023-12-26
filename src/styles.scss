@@ -24,3 +24,6 @@ mat-list-option{
     height: 80px;
 }
 
+.mat-primary .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after, .mat-primary .mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-minimal::after {
+    display: none;
+}

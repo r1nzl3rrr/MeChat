@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { UsersService } from '../account/users.service';
-import { combineLatest, map, startWith, switchMap } from 'rxjs';
+import { combineLatest, map, of, startWith, switchMap, tap } from 'rxjs';
 import { ProfileUser } from '../shared/models/user-profile';
 import { ChatService } from './chat.service';
 
@@ -11,8 +11,12 @@ import { ChatService } from './chat.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+
+  @ViewChild('endOfChat')
+  endOfChat!: ElementRef;
+
   searchControl = new FormControl('');
-  chatListControl = new FormControl('', {nonNullable: true});
+  chatListControl = new FormControl();
   messageControl = new FormControl('');
 
   user$ = this.usersService.currentUserProfile$;
@@ -33,13 +37,27 @@ export class HomeComponent {
 
   messages$ = this.chatListControl.valueChanges.pipe(
     map(value => value[0]),
-    switchMap(chatId => this.chatService.getChatMessages$(chatId))
+    switchMap(chatId => this.chatService.getChatMessages$(chatId)),
+    tap(() => {
+      this.scrollToBottom();
+    })
   )
 
   constructor(private usersService: UsersService, private chatService: ChatService) {}
 
   createChat(otherUser: ProfileUser){
-    this.chatService.createChat(otherUser).subscribe();
+    this.chatService.isExistingChat(otherUser?.uid).pipe(
+      switchMap(chatId => {
+        if (chatId) {
+          return of(chatId);
+        }
+        else{
+          return this.chatService.createChat(otherUser);
+        }
+      })
+    ).subscribe(chatId => {
+      this.chatListControl.setValue([chatId]);
+    })
   }
 
   sendMessage() {
@@ -47,8 +65,18 @@ export class HomeComponent {
     const selectedChatId = this.chatListControl.value[0];
     
     if (message && selectedChatId) {
-      this.chatService.addChatMessage(selectedChatId, message).subscribe();
+      this.chatService.addChatMessage(selectedChatId, message).subscribe(() => {
+        this.scrollToBottom();
+      });
       this.messageControl.setValue('');
     }
+  }
+
+  scrollToBottom() {
+    setTimeout(() => {
+      if (this.endOfChat) {
+        this.endOfChat.nativeElement.scrollIntoView({ behavior: "smooth" })
+      }
+    }, 100);
   }
 }

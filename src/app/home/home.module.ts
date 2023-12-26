@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
+import { DateDisplayPipe } from '../pipes/date-display.pipe';
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    DateDisplayPipe
   ],
   imports: [
     CommonModule,
