@@ -59,7 +59,7 @@
                         <div #endOfChat></div>
                     </ng-container>
                 </div>
-                <div class="input-area">
+                <div class="input-area" *ngIf="selectedChat$ | async">
                     <mat-form-field appearance="outline">
                         <input matInput [formControl]="messageControl" placeholder="Enter your message..." (keydown.enter)="sendMessage()"/>
                         <button mat-icon-button matSuffix (click)="sendMessage()">
@@ -68,7 +68,7 @@
                     </mat-form-field>
                 </div>
             <ng-template #noUser>
-                <div class="no-user-selected">
+                <div class="messages-header">
                     <h1>Please select a user to start chatting</h1>
                 </div>
             </ng-template>
