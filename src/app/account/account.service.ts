@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Auth, UserInfo, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from '@angular/fire/auth';
-import { Observable, concatMap, from, of, switchMap } from 'rxjs';
+import { Auth, UserInfo, authState, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, updateProfile } from '@angular/fire/auth';
+import { Observable, concatMap, from, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +32,9 @@ export class AccountService {
 
   logout(){
     return from(this.auth.signOut());
+  }
+
+  forgotPassword(email: string) {
+    return from(sendPasswordResetEmail(this.auth, email));
   }
 }

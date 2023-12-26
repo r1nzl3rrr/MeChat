@@ -6,6 +6,7 @@ import { AccountRoutingModule } from './account-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ProfileComponent } from './profile/profile.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 
 
@@ -13,7 +14,8 @@ import { ProfileComponent } from './profile/profile.component';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    VerifyEmailComponent
   ],
   imports: [
     CommonModule,

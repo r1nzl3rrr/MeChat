@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-center mt-5">
+    <div class="col-3 form-container">
+        <div class="text-center mb-4">
+            <h1 class="mb-3">Verify Email</h1>
+        </div>
+        <app-text-input [formControl]="verifyEmailControl" [label]="'Email Address'"></app-text-input>
+        <div class="d-grid mb-3">
+            <button mat-raised-button color="primary" 
+                [disabled]="verifyEmailControl.invalid" 
+                (click)="sendVerification()" 
+                (keydown.enter)="sendVerification()">
+                Send Verification
+            </button>
+        </div>
+    </div>
+</div>
