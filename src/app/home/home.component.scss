@@ -11,8 +11,9 @@
 
 .messages{
     height: 90%;
-    background: white;
     border-radius: 16px;
+    padding: 24px;
+    background: rgba(0,0,0,0.05);
 }
 
 .search-input {
@@ -36,4 +37,38 @@
 
 .last-message{
     margin-bottom: 0px;
+}
+
+.message-header {
+    display: flex;
+    margin-bottom: 8px;
+
+    & img{
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 16px;
+        height: 50px;
+    }
+
+    & h2{
+        display: flex;
+        margin: 0;
+        align-items: center;
+    }
+}
+
+.chat-area{
+    height: calc(100vh - 350px);
+    background: white;
+}
+
+.no-user-selected{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-area{
+    padding-top: 16px;
 }

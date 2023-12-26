@@ -16,10 +16,10 @@
                 </mat-autocomplete>
             </div>
 
-            <mat-selection-list [multiple]="false" hideSingleSelectionIndicator>
+            <mat-selection-list [multiple]="false" hideSingleSelectionIndicator [formControl]="chatListControl">
                 <mat-divider></mat-divider>
                 <mat-list-option *ngFor="let chat of myChats$ | async" [value]="chat.id">
-                    <img matListItemAvatar [src]="chat.chatPic ? chat.chatPic : '../assets/images/user-placeholder.jpg'">
+                    <img matListItemAvatar [src]="chat.chatPic ? chat.chatPic : '/assets/images/user-placeholder.jpg'">
                     <p mat-line class="chat-title">
                         <span class="chat-name">
                             {{ chat.chatName }}
@@ -35,6 +35,32 @@
                 </mat-list-option>
             </mat-selection-list>
         </div>
-        <div class="messages mat-elevation-z5 col-8 mt-5"></div>
+        <div class="messages mat-elevation-z5 col-8 mt-5">
+            <ng-container *ngIf="selectedChat$ | async as selectedChat else noUser">
+                <div class="message-header" >
+                    <img [src]="selectedChat.chatPic ? selectedChat.chatPic : 'assets/images/user-placeholder.jpg'">
+                    <h2>{{selectedChat.chatName}}</h2>
+                </div>
+                <mat-divider></mat-divider>
+                <div class="chat-area">
+                    <div *ngFor="let message of messages$ | async">
+                        {{message.text}}
+                    </div>
+                </div>
+                <div class="input-area">
+                    <mat-form-field appearance="outline">
+                        <input matInput [formControl]="messageControl" placeholder="Enter your message..." (keydown.enter)="sendMessage()"/>
+                        <button mat-icon-button matSuffix (click)="sendMessage()">
+                            <i class="fa fa-paper-plane-o"></i>
+                        </button>
+                    </mat-form-field>
+                </div>
+            </ng-container>
+            <ng-template #noUser>
+                <div class="no-user-selected">
+                    <h1>Please select a user to start chatting</h1>
+                </div>
+            </ng-template>
+        </div>
     </div>
 </div>
