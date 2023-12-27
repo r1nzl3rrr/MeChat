@@ -1,0 +1,12 @@
+mat-toolbar{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+@media only screen and (max-width: 768px) {
+    mat-toolbar{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+}

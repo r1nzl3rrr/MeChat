@@ -1,7 +1,21 @@
-<div class="container-fluid" style="height: calc(100vh - 70px); width: 95%;">
+<div class="container-fluid">
+    <div class="mt-3 search-input-mobile">
+        <mat-form-field>
+            <input
+                matInput
+                placeholder="Search for users..."
+                [formControl]="searchControl"
+                [matAutocomplete]="users">
+        </mat-form-field>
+        <mat-autocomplete #users="matAutocomplete">
+            <mat-option *ngFor="let user of users$ | async" (click)="createChat(user)">
+                {{user.displayName}}
+            </mat-option>
+        </mat-autocomplete>
+    </div>
     <div class="row d-flex justify-content-center">
-        <div class="chat-list mat-elevation-z5 col-3 mt-5">
-            <div class="search-input">
+        <div class="chat-list mat-elevation-z5 col-3">
+            <div class="search-input-computer">
                 <mat-form-field>
                     <input
                         matInput
@@ -17,7 +31,7 @@
             </div>
 
             <mat-selection-list [multiple]="false" hideSingleSelectionIndicator [formControl]="chatListControl">
-                <mat-divider></mat-divider>
+                <mat-divider class="chat-list-divider"></mat-divider>
                 <mat-list-option *ngFor="let chat of myChats$ | async" [value]="chat.id">
                     <img matListItemAvatar [src]="chat.chatPic ? chat.chatPic : '/assets/images/user-placeholder.jpg'">
                     <p mat-line class="chat-title">
@@ -31,11 +45,11 @@
                     <p mat-line class="last-message">
                         {{ chat.lastMessage }}
                     </p>
-                    <mat-divider [inset]="true"></mat-divider>
+                    <mat-divider [inset]="true" class="chat-list-divider"></mat-divider>
                 </mat-list-option>
             </mat-selection-list>
         </div>
-        <div class="messages mat-elevation-z5 col-8 mt-5">
+        <div class="messages mat-elevation-z5 col-8">
             <ng-container *ngIf="selectedChat$ | async as selectedChat else noUser">
                 <div class="message-header" >
                     <img [src]="selectedChat.chatPic ? selectedChat.chatPic : 'assets/images/user-placeholder.jpg'">

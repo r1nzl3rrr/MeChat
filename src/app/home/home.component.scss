@@ -1,8 +1,14 @@
+.container-fluid{
+    height: calc(100vh - 70px); 
+    width: 95%;
+}
+
 .chat-list{
     height: 90%;
     background: #c7bee8;
     border-radius: 16px;
     margin-right: 3%;
+    margin-top: 50px;
 }
 
 .row{
@@ -14,9 +20,11 @@
     border-radius: 16px;
     padding: 24px;
     background: rgba(0,0,0,0.05);
+    margin-top: 50px;
+
 }
 
-.search-input {
+.search-input-computer {
     margin: 24px;
 }
 
@@ -89,6 +97,10 @@
     }
 }
 
+.search-input-mobile{
+    display: none;
+}
+
 .chat-bubble {
     background: white;
     padding-top: 8px;
@@ -110,3 +122,33 @@
     }
 }
 
+.search-input-mobile{
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .chat-list-divider{
+        display: none;
+    }
+
+    .search-input-computer{
+        display: none;
+    }
+
+    .search-input-mobile{
+        display: flex;
+        justify-content: center;
+    }
+
+    .chat-list{
+        margin-top: 0px;
+    }
+
+    .messages{
+        margin-top: 0px;
+    }
+
+    .container-fluid{
+        height: calc(100vh - 100px); 
+    }
+}

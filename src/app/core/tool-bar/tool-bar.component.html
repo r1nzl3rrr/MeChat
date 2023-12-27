@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="d-flex justify-content-between px-5">
+<mat-toolbar color="primary" class="d-flex justify-content-between">
     <span routerLink="/" style="cursor: pointer;"><i class="fa fa-comments"></i> MeChat</span>
     <ng-container *ngIf="user$ | async as user; else loginButton">
         <button mat-button [matMenuTriggerFor]="userMenu">

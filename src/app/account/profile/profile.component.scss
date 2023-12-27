@@ -10,7 +10,7 @@
 .profile-image button{
     position: absolute;
     bottom: 1px;
-    right: 38%;
+    right: 35%;
     background-color: #673ab7;
     color: white
 }
@@ -19,4 +19,10 @@
     border-radius: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .profile-image button{
+        right: 22%;
+    }
 }
